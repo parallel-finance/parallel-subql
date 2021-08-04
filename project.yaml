@@ -127,21 +127,24 @@ network:
     "VestingScheduleOf": "OrmlVestingSchedule",
     "PalletsOrigin": {
       "_enum": {
+        "System": "SystemOrigin",
         "Vesting": "Null",
-        "Utility": "Null"
+        "Utility": "Null",
+        "Timestamp": "Null",
+        "Balances": "Null"
       }
     }
-    "typesAlias": {
+  }
+  "typesAlias": {
       "tokens": {
         "AccountData": "OrmlAccountData",
         "BalanceLock": "OrmlBalanceLock",
         "TechnicalCommittee": "CollectiveOrigin"
       }
-    }
   }
-  typesBundle: {
-    spec: {
-      chainname: {
+  "typesBundle": {
+    "spec": {
+      "chainname": {
         "rpc": {
           "oracle": {
             "getValue": {
