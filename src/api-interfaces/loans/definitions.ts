@@ -124,6 +124,10 @@ export default {
                     {
                       name: 'accountId',
                       type: 'AccountId'
+                    },
+                    {
+                      name: "at",
+                      type: "Option<Block>"
                     }
                   ],
                   type: '(Liquidity, Shortfall)',
@@ -133,4 +137,4 @@ export default {
                   section: 'loans'
         }
     }
-}
+};

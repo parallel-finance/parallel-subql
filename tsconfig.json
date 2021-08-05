@@ -12,9 +12,9 @@
     "rootDir": "src",
     "target": "es2017",
     "paths": {
-      "parallel-subql/*": ["src/*"],
-      "@polkadot/api/augment": ["src/interfaces/augment-api.ts"],
-      "@polkadot/types/augment": ["src/interfaces/augment-types.ts"]
+      "parallel/*": ["src/*"],
+      "@polkadot/api/augment": ["src/api-interfaces/augment-api.ts"],
+      "@polkadot/types/augment": ["src/api-interfaces/augment-types.ts"]
     }
   },
   "include": [

@@ -125,26 +125,16 @@ network:
       "perPeriod": "Compact<Balance>"
     },
     "VestingScheduleOf": "OrmlVestingSchedule",
-    "PalletsOrigin": {
-      "_enum": {
-        "System": "SystemOrigin",
-        "Vesting": "Null",
-        "Utility": "Null",
-        "Timestamp": "Null",
-        "Balances": "Null"
-      }
-    }
   }
   "typesAlias": {
       "tokens": {
         "AccountData": "OrmlAccountData",
         "BalanceLock": "OrmlBalanceLock",
-        "TechnicalCommittee": "CollectiveOrigin"
       }
   }
   "typesBundle": {
     "spec": {
-      "chainname": {
+      "parallel": {
         "rpc": {
           "oracle": {
             "getValue": {
@@ -157,6 +147,12 @@ network:
                 {
                   "name": "key",
                   "type": "OracleKey"
+                },
+                {
+                  "name": "at",
+                  "type": "BlockHash",
+                  "isHistoric": true,
+                  "isOptional": true
                 }
               ],
               "type": "Option<TimestampedValue>",
@@ -171,6 +167,12 @@ network:
                 {
                   "name": "providerId",
                   "type": "RpcDataProviderId"
+                },
+                {
+                  "name": "at",
+                  "type": "BlockHash",
+                  "isHistoric": true,
+                  "isOptional": true
                 }
               ],
               "type": "Vec<(OracleKey, Option<TimestampedValue>)>",
@@ -187,6 +189,10 @@ network:
                 {
                   "name": "accountId",
                   "type": "AccountId"
+                },
+                {
+                  "name": "at",
+                  "type": "Option<Block>"
                 }
               ],
               "type": "(Liquidity, Shortfall)",
