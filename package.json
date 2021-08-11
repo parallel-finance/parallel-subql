@@ -1,0 +1,35 @@
+{
+  "name": "parallel-subql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "prepack": "rm -rf dist && npm build",
+    "test": "jest",
+    "codegen": "./node_modules/.bin/subql codegen",
+    "start:docker": "docker-compose pull && docker-compose up --remove-orphans",
+    "interface-build": "yarn generate:defs && yarn generate:meta && tsc -b",
+    "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package parallel/api-interfaces --input ./src/api-interfaces",
+    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package parallel/api-interfaces --endpoint ./src/api-interfaces/parallel.json --output ./src/api-interfaces --strict"
+  },
+  "homepage": "https://github.com/subquery/subql-starter",
+  "repository": "github:subquery/subql-starter",
+  "files": [
+    "dist",
+    "schema.graphql",
+    "project.yaml"
+  ],
+  "author": "Parallel Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@polkadot/api": "4.6.1",
+    "@subql/types": "^0.7.1",
+    "typescript": "^4.1.3",
+    "@subql/cli": "^0.9.3",
+    "ts-node": "^8.6.2"
+  },
+  "resolutions": {
+    "@polkadot/api": "4.6.1"
+  }
+}
