@@ -88,3 +88,10 @@ type Transfer @entity {
   timestamp: Date
   isSuccess: Boolean
 }
+
+type DotExchangeRate @entity {
+  id: ID!
+
+  rate: Int
+  block: Block #create relation to block
+}
