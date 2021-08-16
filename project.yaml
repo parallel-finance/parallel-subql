@@ -218,3 +218,5 @@ dataSources:
           kind: substrate/EventHandler
         - handler: handleCall
           kind: substrate/CallHandler
+        - handler: dotExchangeRateHistory
+          kind: substrate/BlockHandler
