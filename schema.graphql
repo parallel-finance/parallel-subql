@@ -92,6 +92,6 @@ type Transfer @entity {
 type DotExchangeRate @entity {
   id: ID!
 
-  rate: Int
-  block: Block #create relation to block
+  rate: String
+  blockNumber: BigInt
 }

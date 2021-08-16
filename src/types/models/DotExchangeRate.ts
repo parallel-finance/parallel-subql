@@ -12,9 +12,9 @@ export class DotExchangeRate implements Entity {
 
     public id: string;
 
-    public rate?: number;
+    public rate?: string;
 
-    public blockId?: string;
+    public blockNumber?: bigint;
 
 
     async save(): Promise<void>{
