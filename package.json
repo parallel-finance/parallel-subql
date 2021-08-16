@@ -23,7 +23,6 @@
   "author": "Parallel Team",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@parallel-finance/types": "^1.1.1",
     "@polkadot/api": "4.6.1",
     "@subql/types": "^0.7.1",
     "typescript": "^4.1.3",
