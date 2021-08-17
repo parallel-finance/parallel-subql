@@ -218,3 +218,5 @@ dataSources:
           kind: substrate/EventHandler
         - handler: handleCall
           kind: substrate/CallHandler
+        - handler: handleExchangeRate
+          kind: substrate/BlockHandler

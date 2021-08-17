@@ -7,12 +7,11 @@ import { Dispatcher } from '../helpers/dispatcher'
 import { TransferHandler } from './sub-handlers/transfer'
 import { AnyCall, CallDispatcher, DispatchedCallData } from './types'
 
-
 export class CallHandler {
   private extrinsic: SubstrateExtrinsic
   private dispatcher: CallDispatcher
 
-  static async ensureCall (id: string) {
+  static async ensureCall(id: string): Promise<void> {
     const call = await Call.get(id)
 
     if (!call) {
@@ -27,7 +26,7 @@ export class CallHandler {
     this.registerSubHandler()
   }
 
-  private registerSubHandler () {
+  private registerSubHandler() {
     this.dispatcher.batchRegist([
       {
         key: 'balances-transfer',
@@ -67,7 +66,10 @@ export class CallHandler {
       call.section = section
       call.args = JSON.stringify(args)
       call.signerId = this.signer
-      call.isSuccess = depth === 0 ? extrinsic.isSuccess : extrinsic.batchInterruptedIndex > idx;
+      call.isSuccess =
+        depth === 0
+          ? extrinsic.isSuccess
+          : extrinsic.batchInterruptedIndex > idx
       call.timestamp = extrinsic.timestamp
 
       if (!isRoot) {
@@ -84,21 +86,24 @@ export class CallHandler {
 
       list.push(call)
 
-      await this.dispatcher.dispatch(
-        `${call.section}-${call.method}`,
-        {
-          id: call.id,
-          call: data,
-          extrinsic: this.extrinsic,
-          isSuccess: call.isSuccess
-        }
-      )
+      await this.dispatcher.dispatch(`${call.section}-${call.method}`, {
+        id: call.id,
+        call: data,
+        extrinsic: this.extrinsic,
+        isSuccess: call.isSuccess
+      })
 
-      if (depth < 1 && section === 'utility' && (method === 'batch' || method === 'batchAll')) {
+      if (
+        depth < 1 &&
+        section === 'utility' &&
+        (method === 'batch' || method === 'batchAll')
+      ) {
         const temp = args[0] as unknown as Vec<AnyCall>
 
-        await Promise.all(temp.map((item, idx) => inner(item, id, idx, false, depth + 1)))
-      } 
+        await Promise.all(
+          temp.map((item, idx) => inner(item, id, idx, false, depth + 1))
+        )
+      }
     }
 
     await inner(this.extrinsic.extrinsic.method, this.hash, 0, true, 0)
@@ -106,9 +111,9 @@ export class CallHandler {
     return list
   }
 
-  public async save () {
+  public async save(): Promise<void> {
     const calls = await this.traver()
 
-    await Promise.all(calls.map(async (item) => item.save()));
+    await Promise.all(calls.map(async (item) => item.save()))
   }
 }

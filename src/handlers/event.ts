@@ -3,13 +3,11 @@ import { Event } from '../types/models/Event'
 import { BlockHandler } from './block'
 import { ExtrinsicHandler } from './extrinsic'
 import { Dispatcher } from '../helpers/dispatcher'
-import { AccountHandler } from './sub-handlers/account'
-import { TransferHandler } from './sub-handlers/transfer'
 
 type EventDispatch = Dispatcher<SubstrateEvent>
 
 export class EventHandler {
-  private event: SubstrateEvent 
+  private event: SubstrateEvent
   private dispatcher: EventDispatch
 
   constructor(event: SubstrateEvent) {
@@ -19,45 +17,45 @@ export class EventHandler {
     this.registerDispatcherHandler()
   }
 
-  private registerDispatcherHandler () {
-    this.dispatcher.batchRegist([ ])
+  private registerDispatcherHandler() {
+    this.dispatcher.batchRegist([])
   }
 
-  get index () {
+  get index(): number {
     return this.event.idx
   }
 
-  get blockNumber () {
+  get blockNumber(): bigint {
     return this.event.block.block.header.number.toBigInt()
   }
 
-  get blockHash () {
+  get blockHash(): string {
     return this.event.block.block.hash.toString()
   }
 
-  get section () {
+  get section(): string {
     return this.event.event.section
   }
 
-  get method () {
+  get method(): string {
     return this.event.event.method
   }
 
-  get data () {
+  get data(): string {
     return this.event.event.data.toString()
   }
 
-  get extrinsicHash () {
+  get extrinsicHash(): string {
     const i = this.event?.extrinsic?.extrinsic?.hash?.toString()
 
     return i === 'null' ? undefined : i
   }
 
-  get id () {
+  get id(): string {
     return `${this.blockNumber}-${this.index}`
   }
 
-  public async save () {
+  public async save(): Promise<void> {
     const event = new Event(this.id)
 
     await BlockHandler.ensureBlock(this.blockHash)
@@ -74,13 +72,10 @@ export class EventHandler {
     event.blockId = this.blockHash
 
     if (this.extrinsicHash) {
-      event.extrinsicId = this.extrinsicHash;
+      event.extrinsicId = this.extrinsicHash
     }
 
-    await this.dispatcher.dispatch(
-      `${this.section}-${this.method}`,
-      this.event
-    );
+    await this.dispatcher.dispatch(`${this.section}-${this.method}`, this.event)
 
     await event.save()
   }

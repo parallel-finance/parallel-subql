@@ -10,12 +10,7 @@
     "baseUrl": ".",
     "outDir": "dist",
     "rootDir": "src",
-    "target": "es2017",
-    "paths": {
-      "parallel/*": ["src/*"],
-      "@polkadot/api/augment": ["src/api-interfaces/augment-api.ts"],
-      "@polkadot/types/augment": ["src/api-interfaces/augment-types.ts"]
-    }
+    "target": "es2017"
   },
   "include": [
     "src/**/*",

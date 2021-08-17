@@ -16,3 +16,5 @@ export {Token} from "./Token"
 
 export {Transfer} from "./Transfer"
 
+export {ExchangeRate} from "./ExchangeRate"
+

@@ -88,3 +88,15 @@ type Transfer @entity {
   timestamp: Date
   isSuccess: Boolean
 }
+
+type ExchangeData @jsonField {
+  key: String
+  value: String
+}
+
+type ExchangeRate @entity {
+  id: ID!
+
+  rates: [ExchangeData]
+  blockNumber: BigInt
+}

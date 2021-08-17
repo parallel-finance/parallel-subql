@@ -9,9 +9,8 @@
     "test": "jest",
     "codegen": "./node_modules/.bin/subql codegen",
     "start:docker": "docker-compose pull && docker-compose up --remove-orphans",
-    "interface-build": "yarn generate:defs && yarn generate:meta && tsc -b",
-    "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package parallel/api-interfaces --input ./src/api-interfaces",
-    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package parallel/api-interfaces --endpoint ./src/api-interfaces/parallel.json --output ./src/api-interfaces --strict"
+    "format": "prettier --config .prettierrc.json 'src/**/*.ts' --write",
+    "lint": "eslint . --ext .ts --fix"
   },
   "homepage": "https://github.com/subquery/subql-starter",
   "repository": "github:subquery/subql-starter",
@@ -23,13 +22,21 @@
   "author": "Parallel Team",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@polkadot/api": "4.6.1",
-    "@subql/types": "^0.7.1",
-    "typescript": "^4.1.3",
-    "@subql/cli": "^0.9.3",
-    "ts-node": "^8.6.2"
+    "@parallel-finance/types": "^1.1.1",
+    "@subql/cli": "^0.10.0",
+    "@subql/types": "^0.8.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "lint-staged": "^11.0.1",
+    "prettier": "^2.3.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^4.3.5"
   },
   "resolutions": {
-    "@polkadot/api": "4.6.1"
+    "@polkadot/api": "^5.2.1",
+    "@polkadot/types": "^5.2.1"
   }
 }

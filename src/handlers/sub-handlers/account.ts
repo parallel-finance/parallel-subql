@@ -1,13 +1,7 @@
-import { Account } from "../../types/models/Account"
-
-interface AccountData {
-  id: string
-  address: string
-}
+import { Account } from '../../types/models/Account'
 
 export class AccountHandler {
-
-  static async ensureAccount (id: string) {
+  static async ensureAccount(id: string): Promise<void> {
     const account = await Account.get(id)
 
     if (!account) {
@@ -15,7 +9,7 @@ export class AccountHandler {
     }
   }
 
-  static async getAccountById (id: string) {
+  static async getAccountById(id: string): Promise<Account> {
     await this.ensureAccount(id)
 
     const account = await Account.get(id)
@@ -23,7 +17,11 @@ export class AccountHandler {
     return account
   }
 
-  static async updateAccount (id: string, data: Record<string, any>) {
+  /* eslint-disable @typescript-eslint/no-explicit-any*/
+  static async updateAccount(
+    id: string,
+    data: Record<string, any>
+  ): Promise<void> {
     const account = await this.getAccountById(id)
 
     Object.keys(data).forEach((key, value) => {

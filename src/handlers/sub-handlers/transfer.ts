@@ -1,7 +1,5 @@
-import { SubstrateExtrinsic } from '@subql/types'
 import { resolveToken } from '../../helpers/token'
-import { Call } from '../../types/models/Call'
-import { Transfer } from "../../types/models/Transfer"
+import { Transfer } from '../../types/models/Transfer'
 import { CallHandler } from '../call'
 import { ExtrinsicHandler } from '../extrinsic'
 import { DispatchedCallData } from '../types'
@@ -9,12 +7,18 @@ import { AccountHandler } from './account'
 import { TokenHandler } from './token'
 
 export class TransferHandler {
-  static async handleCallBalancesTransfer ({ id, call, extrinsic, isSuccess } : DispatchedCallData) {
+  /* eslint-disable @typescript-eslint/no-explicit-any*/
+  static async handleCallBalancesTransfer({
+    id,
+    call,
+    extrinsic,
+    isSuccess
+  }: DispatchedCallData): Promise<void> {
     const args = call.args
     const extrinsicHandler = new ExtrinsicHandler(extrinsic)
 
     const to = args[0].toString()
-    const token = resolveToken(args[1]);
+    const token = resolveToken(args[1])
     const amount = (args[2] as any).toBigInt() || BigInt(0)
     const from = extrinsicHandler.signer
     const extrinsicHash = extrinsicHandler.id
