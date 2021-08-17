@@ -89,9 +89,14 @@ type Transfer @entity {
   isSuccess: Boolean
 }
 
-type DotExchangeRate @entity {
+type ExchangeData @jsonField {
+  key: String
+  value: String
+}
+
+type ExchangeRate @entity {
   id: ID!
 
-  rate: String
+  rates: [ExchangeData]
   blockNumber: BigInt
 }
