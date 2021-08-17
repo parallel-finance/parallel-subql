@@ -1,4 +1,3 @@
-
 import type { CallBase, AnyTuple } from '@polkadot/types/types'
 import type { SubstrateExtrinsic } from '@subql/types'
 import { Dispatcher } from '../helpers/dispatcher'
@@ -13,4 +12,3 @@ export interface DispatchedCallData {
 }
 
 export type CallDispatcher = Dispatcher<DispatchedCallData>
-

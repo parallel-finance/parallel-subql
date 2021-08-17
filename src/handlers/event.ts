@@ -7,7 +7,7 @@ import { Dispatcher } from '../helpers/dispatcher'
 type EventDispatch = Dispatcher<SubstrateEvent>
 
 export class EventHandler {
-  private event: SubstrateEvent 
+  private event: SubstrateEvent
   private dispatcher: EventDispatch
 
   constructor(event: SubstrateEvent) {
@@ -17,45 +17,45 @@ export class EventHandler {
     this.registerDispatcherHandler()
   }
 
-  private registerDispatcherHandler () {
-    this.dispatcher.batchRegist([ ])
+  private registerDispatcherHandler() {
+    this.dispatcher.batchRegist([])
   }
 
-  get index (): number {
+  get index(): number {
     return this.event.idx
   }
 
-  get blockNumber (): bigint {
+  get blockNumber(): bigint {
     return this.event.block.block.header.number.toBigInt()
   }
 
-  get blockHash (): string {
+  get blockHash(): string {
     return this.event.block.block.hash.toString()
   }
 
-  get section (): string {
+  get section(): string {
     return this.event.event.section
   }
 
-  get method (): string {
+  get method(): string {
     return this.event.event.method
   }
 
-  get data (): string {
+  get data(): string {
     return this.event.event.data.toString()
   }
 
-  get extrinsicHash (): string {
+  get extrinsicHash(): string {
     const i = this.event?.extrinsic?.extrinsic?.hash?.toString()
 
     return i === 'null' ? undefined : i
   }
 
-  get id (): string {
+  get id(): string {
     return `${this.blockNumber}-${this.index}`
   }
 
-  public async save (): Promise<void> {
+  public async save(): Promise<void> {
     const event = new Event(this.id)
 
     await BlockHandler.ensureBlock(this.blockHash)
@@ -72,13 +72,10 @@ export class EventHandler {
     event.blockId = this.blockHash
 
     if (this.extrinsicHash) {
-      event.extrinsicId = this.extrinsicHash;
+      event.extrinsicId = this.extrinsicHash
     }
 
-    await this.dispatcher.dispatch(
-      `${this.section}-${this.method}`,
-      this.event
-    );
+    await this.dispatcher.dispatch(`${this.section}-${this.method}`, this.event)
 
     await event.save()
   }

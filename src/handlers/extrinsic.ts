@@ -1,5 +1,8 @@
 import { SubstrateExtrinsic } from '@subql/types'
-import { checkIfExtrinsicExecuteSuccess, getBatchInterruptedIndex } from '../helpers'
+import {
+  checkIfExtrinsicExecuteSuccess,
+  getBatchInterruptedIndex
+} from '../helpers'
 import { Extrinsic } from '../types/models/Extrinsic'
 import { BlockHandler } from './block'
 import { CallHandler } from './call'
@@ -10,7 +13,7 @@ export class ExtrinsicHandler {
 
   static async ensureExtrinsic(id: string): Promise<void> {
     const extrinsic = await Extrinsic.get(id)
-  
+
     if (!extrinsic) {
       await new Extrinsic(id).save()
     }
@@ -72,7 +75,7 @@ export class ExtrinsicHandler {
     return getBatchInterruptedIndex(this.extrinsic)
   }
 
-  public async save (): Promise<void> {
+  public async save(): Promise<void> {
     const record = new Extrinsic(this.id)
 
     await BlockHandler.ensureBlock(this.blockHash)

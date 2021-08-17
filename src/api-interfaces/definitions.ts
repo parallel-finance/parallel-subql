@@ -1,1 +1,1 @@
-export { default as loans } from './loans/definitions';
+export { default as loans } from './loans/definitions'

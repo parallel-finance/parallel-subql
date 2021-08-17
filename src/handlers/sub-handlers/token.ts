@@ -1,7 +1,7 @@
 import { Token } from '../../types/models/Token'
 
 export class TokenHandler {
-  static async ensureToken (id: string, decimal?: number): Promise<void> {
+  static async ensureToken(id: string, decimal?: number): Promise<void> {
     const token = await Token.get(id)
 
     if (!token) {

@@ -7,18 +7,18 @@ export const TOKEN_DECIMAL = {
   xDOT: 12,
   xKSM: 12,
   HKO: 12,
-  PARA: 12,
- }
+  PARA: 12
+}
 
 /* eslint-disable @typescript-eslint/no-explicit-any*/
-export function resolveToken (token: Codec): {
-                                               name: any;
-                                               decimal: any;
-                                           } {
-    const name = (token as any).asToken.toString()
+export function resolveToken(token: Codec): {
+  name: any
+  decimal: any
+} {
+  const name = (token as any).asToken.toString()
 
-    return {
-      name,
-      decimal: TOKEN_DECIMAL[name] || 12,
-    }
+  return {
+    name,
+    decimal: TOKEN_DECIMAL[name] || 12
   }
+}
