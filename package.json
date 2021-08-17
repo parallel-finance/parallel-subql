@@ -4,7 +4,6 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "install-prettier": "npm install --save-dev eslint-config-prettier",
     "build": "tsc -b",
     "prepack": "rm -rf dist && npm build",
     "test": "jest",
