@@ -4,6 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "install-ex-lint": "yarn add -D eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin",
+    "install-prettier": "npm install --save-dev eslint-config-prettier",
     "build": "tsc -b",
     "prepack": "rm -rf dist && npm build",
     "test": "jest",
@@ -24,10 +26,14 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@parallel-finance/types": "^1.1.1",
-    "@subql/types": "^0.8.1",
-    "typescript": "^4.3.5",
     "@subql/cli": "^0.10.0",
-    "ts-node": "^8.6.2"
+    "@subql/types": "^0.8.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^4.3.5"
   },
   "resolutions": {
     "@polkadot/api": "^5.2.1",

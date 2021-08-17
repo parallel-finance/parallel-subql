@@ -12,7 +12,7 @@ export class CallHandler {
   private extrinsic: SubstrateExtrinsic
   private dispatcher: CallDispatcher
 
-  static async ensureCall (id: string) {
+  static async ensureCall (id: string): Promise<void> {
     const call = await Call.get(id)
 
     if (!call) {
@@ -106,7 +106,7 @@ export class CallHandler {
     return list
   }
 
-  public async save () {
+  public async save (): Promise<void> {
     const calls = await this.traver()
 
     await Promise.all(calls.map(async (item) => item.save()));

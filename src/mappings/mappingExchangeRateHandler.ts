@@ -1,4 +1,4 @@
-import { SubstrateBlock, SubstrateEvent } from "@subql/types";
+import { SubstrateBlock } from "@subql/types";
 import { BlockNumber } from "@polkadot/types/interfaces";
 import { Compact } from '@polkadot/types';
 import { ExchangeRate } from "../types/models/ExchangeRate";

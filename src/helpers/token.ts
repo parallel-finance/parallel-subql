@@ -10,7 +10,11 @@ export const TOKEN_DECIMAL = {
   PARA: 12,
  }
 
-export function resolveToken (token: Codec) {
+/* eslint-disable @typescript-eslint/no-explicit-any*/
+export function resolveToken (token: Codec): {
+                                               name: any;
+                                               decimal: any;
+                                           } {
     const name = (token as any).asToken.toString()
 
     return {

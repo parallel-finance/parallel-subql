@@ -1,6 +1,4 @@
-import { SubstrateExtrinsic } from '@subql/types'
 import { resolveToken } from '../../helpers/token'
-import { Call } from '../../types/models/Call'
 import { Transfer } from "../../types/models/Transfer"
 import { CallHandler } from '../call'
 import { ExtrinsicHandler } from '../extrinsic'
@@ -9,7 +7,8 @@ import { AccountHandler } from './account'
 import { TokenHandler } from './token'
 
 export class TransferHandler {
-  static async handleCallBalancesTransfer ({ id, call, extrinsic, isSuccess } : DispatchedCallData) {
+/* eslint-disable @typescript-eslint/no-explicit-any*/
+  static async handleCallBalancesTransfer ({ id, call, extrinsic, isSuccess } : DispatchedCallData): Promise<void> {
     const args = call.args
     const extrinsicHandler = new ExtrinsicHandler(extrinsic)
 

@@ -72,7 +72,7 @@ export class ExtrinsicHandler {
     return getBatchInterruptedIndex(this.extrinsic)
   }
 
-  public async save () {
+  public async save (): Promise<void> {
     const record = new Extrinsic(this.id)
 
     await BlockHandler.ensureBlock(this.blockHash)

@@ -1,7 +1,6 @@
 import { SubstrateBlock } from '@subql/types'
 import { getBlockTimestamp } from '../helpers'
 import { Block } from '../types/models/Block'
-import { TokenHandler } from './sub-handlers/token'
 
 export class BlockHandler {
   private block: SubstrateBlock
@@ -18,27 +17,27 @@ export class BlockHandler {
     this.block = block
   }
 
-  get blockTimestamp () {
+  get blockTimestamp (): Date {
     return getBlockTimestamp(this.block.block)
   }
 
-  get number () {
+  get number (): bigint {
     return this.block.block.header.number.toBigInt() || BigInt(0)
   }
 
-  get hash () {
+  get hash (): string {
     return this.block.block.hash.toString()
   }
 
-  get specVersion () {
+  get specVersion (): number {
     return this.block.specVersion
   }
 
-  get parentHash () {
+  get parentHash (): string {
     return this.block.block.header.parentHash.toString()
   }
 
-  public async save () {
+  public async save (): Promise<void> {
     const block = new Block(this.hash)
 
     block.number = this.number
