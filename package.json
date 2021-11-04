@@ -4,7 +4,7 @@
     "description": "",
     "main": "dist/index.js",
     "scripts": {
-        "build": "npm install && yarn && yarn codegen && tsc -b",
+        "build": "tsc -b",
         "prepack": "rm -rf dist && npm build",
         "test": "jest",
         "codegen": "./node_modules/.bin/subql codegen",
@@ -23,6 +23,8 @@
     "license": "Apache-2.0",
     "devDependencies": {
         "@parallel-finance/types": "^1.4.2",
+        "@polkadot/api": "^6.3.1",
+        "@polkadot/types": "^6.3.1",
         "@subql/cli": "latest",
         "@subql/types": "latest",
         "@typescript-eslint/eslint-plugin": "^4.28.3",
