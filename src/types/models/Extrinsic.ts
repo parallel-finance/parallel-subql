@@ -1,5 +1,5 @@
 // Auto-generated , DO NOT EDIT
-import {Entity} from "@subql/types";
+import {Entity, FunctionPropertyNames} from "@subql/types";
 import assert from 'assert';
 
 
@@ -56,8 +56,23 @@ export class Extrinsic implements Entity {
     }
 
 
+    static async getBySignerId(signerId: string): Promise<Extrinsic[] | undefined>{
+      
+      const records = await store.getByField('Extrinsic', 'signerId', signerId);
+      return records.map(record => Extrinsic.create(record));
+      
+    }
 
-    static create(record){
+    static async getByBlockId(blockId: string): Promise<Extrinsic[] | undefined>{
+      
+      const records = await store.getByField('Extrinsic', 'blockId', blockId);
+      return records.map(record => Extrinsic.create(record));
+      
+    }
+
+
+    static create(record: Partial<Omit<Extrinsic, FunctionPropertyNames<Extrinsic>>> & Entity): Extrinsic {
+        assert(typeof record.id === 'string', "id must be provided");
         let entity = new Extrinsic(record.id);
         Object.assign(entity,record);
         return entity;

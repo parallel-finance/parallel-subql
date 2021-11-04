@@ -3,7 +3,7 @@ description: ''
 repository: https://github.com/parallel-finance/parallel-subql
 schema: ./schema.graphql
 network:
-  endpoint: wss://testnet-rpc.parallel.fi
+  endpoint: wss://heiko-rpc.parallel.fi
   types: {
     "Address": "MultiAddress",
     "LookupSource": "MultiAddress",
@@ -48,7 +48,9 @@ network:
       "closeFactor": "Ratio",
       "liquidateIncentive": "Rate",
       "rateModel": "InterestRateModel",
-      "state": "MarketState"
+      "state": "MarketState",
+      "cap": "Balance",
+      "ptokenId": "CurrencyId"
     },
     "MarketState": {
       "_enum": [ "Active", "Pending", "Supervision" ]
@@ -209,7 +211,7 @@ network:
 dataSources:
   - name: main
     kind: substrate/Runtime
-    startBlock: 1
+    startBlock: 161469
     mapping:
       handlers:
         - handler: handleBlock

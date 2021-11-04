@@ -4,9 +4,9 @@
 
 export interface ExchangeData {
 
-    key: string;
+    key?: string;
 
-    value: string;
+    value?: string;
 
 }
 

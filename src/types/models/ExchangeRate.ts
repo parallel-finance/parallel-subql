@@ -1,5 +1,5 @@
 // Auto-generated , DO NOT EDIT
-import {Entity} from "@subql/types";
+import {Entity, FunctionPropertyNames} from "@subql/types";
 import assert from 'assert';
 
 import {
@@ -43,7 +43,8 @@ export class ExchangeRate implements Entity {
 
 
 
-    static create(record){
+    static create(record: Partial<Omit<ExchangeRate, FunctionPropertyNames<ExchangeRate>>> & Entity): ExchangeRate {
+        assert(typeof record.id === 'string', "id must be provided");
         let entity = new ExchangeRate(record.id);
         Object.assign(entity,record);
         return entity;
